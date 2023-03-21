@@ -1,77 +1,64 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <!-- register -->
+    <div class="register">
+        <div class="container">
+            <h3 class="animated wow zoomIn" data-wow-delay=".5s">Register Here</h3>
+            <p class="est animated wow zoomIn" data-wow-delay=".5s">Creating an account is quick and simple, and it means you
+                can track, change or return your order.</p>
+            <div class="login-form-grids">
+                <h5 class="animated wow slideInUp" data-wow-delay=".5s">profile information</h5>
+                <form class="animated wow slideInUp" data-wow-delay=".5s" method="POST">
+                    @csrf
+                    
+                    <input type="text" placeholder="First Name..." name="first_name">
+                    @if ($errors->has('first_name'))
+                        <small style="color:red">
+                            {{ $errors->first('first_name') }}
+                        </small>
+                    @endif
+                    <input type="text" placeholder="Last Name..." name="last_name">
+                    @if ($errors->has('last_name'))
+                        <small style="color:red">
+                            {{ $errors->first('last_name') }}
+                        </small>
+                    @endif
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    <h6 class="animated wow slideInUp" data-wow-delay=".5s">Login information</h6>
+                    <input type="email" placeholder="Email Address" name="email">
+                    @if ($errors->has('email'))
+                        <small style="color:red">
+                            {{ $errors->first('email') }}
+                        </small>
+                    @endif
+                    <input type="password" placeholder="Password" name="password">
+                    @if ($errors->has('password'))
+                        <small style="color:red">
+                            {{ $errors->first('password') }}
+                        </small>
+                    @endif
+                    <input type="password" placeholder="Password Confirmation" name="password_confirmation">
+                    @if ($errors->has('password_confirmation'))
+                        <small style="color:red">
+                            {{ $errors->first('password_confirmation') }}
+                        </small>
+                    @endif
+                    <div class="register-check-box">
+                        <div class="check">
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and
+                                conditions</label>
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    @if ($errors->has('checkbox'))
+                        <small style="color:red">
+                            {{ $errors->first('checkbox') }}
+                        </small>
+                    @endif
+                    <input type="submit" value="Register">
+                </form>
             </div>
         </div>
     </div>
-</div>
+    <!-- //register -->
 @endsection
